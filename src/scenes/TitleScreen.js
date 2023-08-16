@@ -1,17 +1,31 @@
-import Phaser from "phaser";
+import Phaser, { Scene } from "phaser";
+import MainScene from "./MainScene";
 
 
 export default class TitleScreen extends Phaser.Scene {
     preload() {
-        this.load.image("porn", "porn.png")
+        
+        
     }
 
     create() {
-        const pornimage = this.add.image(200, 200, "porn")
-        const text = this.add.text(400, 250, "Testing hello world")
+        
+        const text = this.add.text(400, 250, "Main Menu")
+
+        const StartGame = this.add.text(400, 300,"Start Game")
+
+        StartGame.setOrigin(0.5, 0.5)
         
         text.setOrigin(0.5, 0.5)
-        pornimage.setScale(0.25, 0.25)
+        
+
+        StartGame.setInteractive()
+        
+
+        StartGame.on('pointerdown', () => {
+            this.input.stopPropagation()
+            this.scene.switch('MainScene');
+        })
 
     }
     update() {
